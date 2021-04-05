@@ -59,6 +59,13 @@ public class EmailTest {
 		//email.addHeader(null, "word");
 		//email.addHeader(null, "mail");
 	}
-	
+		
+	@Test
+	public void testAddReplyTo() throws Exception {
+		
+		String em = "a@g.com";
+		String name = "Abe";
+		email.addReplyTo(em, name);
+	}
 
 }
