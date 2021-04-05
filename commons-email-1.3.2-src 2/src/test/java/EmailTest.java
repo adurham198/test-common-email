@@ -257,6 +257,11 @@ public class EmailTest {
 		email.getSentDate();
 		
 	}	
-
+    @Test
+	public void testGetSocketConnection() throws Exception {
+		email.setSocketConnectionTimeout(100000);
+		email.getSocketConnectionTimeout();
+		
+	}	
 
 }
