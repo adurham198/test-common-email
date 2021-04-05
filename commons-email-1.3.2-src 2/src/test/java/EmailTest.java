@@ -68,4 +68,39 @@ public class EmailTest {
 		email.addReplyTo(em, name);
 	}
 
+    @Test
+	public void testbuildMimeMessage() throws Exception {
+		
+		  Properties properties = new Properties();
+		  
+		 		Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication("Admin", "password");
+			}
+		});
+		  //email.setSmtpPort(465); 
+		  email.setFrom("u@gmail.com"); 
+		  email.addTo("c@d.com");
+		  email.setSubject("Test subject"); 
+		  email.setCharset("ISO-8859-1");
+		  email.addCc("abc@gmail.com"); 
+		  email.addBcc("ba@gmail.com");
+		  email.setSentDate(new Date()); 
+		  email.emailBody("Hello", "text/plain");
+		  email.addReplyTo("jb@l.com");
+		   email.setContent("Set Content", "text/plain");
+		  email.addHeader("Mark", "abc"); 
+		  email.setHostName("localhost");
+		 
+		 email.createMimeMessage(session);
+		 email.popHost("an@gmail.com");
+		 email.popPassword("G");
+		 email.popUsername("vjda");
+		 email.buildMimeMessage();
+		 //Store store = new Store(email.popHost, email.popUsername, email.popPassword);
+		 
+		
+	}
+
+
 }
