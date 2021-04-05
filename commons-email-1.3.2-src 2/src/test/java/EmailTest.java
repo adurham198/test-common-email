@@ -205,6 +205,58 @@ public class EmailTest {
 		//assertEquals(email.hostName, email.getHostName());
 		
 	}
+    	
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testGetMailSessionWithNull() throws Exception {
+		
+		  String authuser = null; 
+		  String authpwd = null;
+		  Properties props = new Properties(); 
+		  
+		  props.put(EmailConstants.EMAIL_BODY, "foo");
+		  props.put(EmailConstants.MAIL_HOST, "localhost");
+		props.put(EmailConstants.MAIL_PORT, "25");
+		props.put(EmailConstants.MAIL_SMTP_USER, "username@gmail.com");
+		props.put(EmailConstants.MAIL_SMTP_PASSWORD, "password");
+		props.put(EmailConstants.MAIL_SMTP_SSL_ENABLE, 0);
+		props.put(EmailConstants.MAIL_SMTP_SSL_CHECKSERVERIDENTITY, 0);
+		props.put(EmailConstants.MAIL_SMTP_CONNECTIONTIMEOUT, "110000");
+		props.put(EmailConstants.MAIL_SMTP_CONNECTIONTIMEOUT, "default");
+		props.put(EmailConstants.SOCKET_TIMEOUT_MS, 100000);
+		props.put(EmailConstants.EMAIL_BODY, "TestBody");
+		props.put(EmailConstants.SMTP, "596");
+		props.put(EmailConstants.MAIL_SMTP_SSL_SOCKET_FACTORY_PORT, "593");
+		props.put(EmailConstants.MAIL_SMTP_SEND_PARTIAL, "tesT");
+		  email.setHostName("localhost"); 
+		  
+		  //In order to use set pop before smtp, we have to actually connect to POP. 
+		  //Although commenting out setPopBeforeSmtp covers the test cases, it also flags a runtime error.
+		  //email.setPopBeforeSmtp(true, null, null, null);
+		  email.setSmtpPort(25);
+		  Session aSession = Session.getDefaultInstance(props); 
+		  MimeMessage m = new MimeMessage(aSession);
+		  email.setMailSession(aSession);
+		  email.setSubject(null); 
+		  email.setMsg("Real");
+		  email.setFrom("n@gm.com");
+		  //String aContentType = null;
+		 //email.updateContentType(aContentType);
+		  email.addTo("s@b.com");
+		  email.createMimeMessage(m);
+		  email.buildMimeMessage(); 
+		 // email.send();
+		 
+	}
+	
+	@Test
+	public void testGetSentDate() throws Exception {
+		email.setSentDate(new Date());
+		email.getSentDate();
+		email.setSentDate(null);
+		email.getSentDate();
+		
+	}	
 
 
 }
