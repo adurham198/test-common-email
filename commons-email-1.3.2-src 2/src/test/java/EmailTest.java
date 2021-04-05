@@ -97,10 +97,46 @@ public class EmailTest {
 		 email.popPassword("G");
 		 email.popUsername("vjda");
 		 email.buildMimeMessage();
+		 //Store store = new Store(email.popHost, email.popUsername, email.popPassword);	 
+	}
+
+    @Test
+	public void testbuildMimeMessageWithNull() throws Exception {
+		
+		  Properties properties = new Properties();
+	      properties.put(EmailConstants.CONTENT_TYPE, "a");
+		  Session session = Session.getInstance(properties,null);
+		  MimeMessage m = new MimeMessage(session);
+		  email.setFrom("abe@c.com"); 
+		  email.addTo("c@d.com");
+		  Object aObject = new Object();
+		String aContentType = null;
+		email.setContent(aObject, aContentType );
+		  email.setSubject(null); 
+		  email.setCharset("ISO-8859-1");
+		  email.emailBody("nll", "text/plain");
+		  email.addReplyTo("jb@l.com");
+		  //String aContentType = null;
+		  //email.updateContentType(aContentType );
+		  properties.put(EmailConstants.MAIL_HOST, "smtp.office365.com");
+		  email.addHeader("Mark", "abc"); 
+		  email.setHostName("smtp.gmail.com");
+		 email.createMimeMessage(session);
+		 email.message("word");
+		 email.buildMimeMessage();
 		 //Store store = new Store(email.popHost, email.popUsername, email.popPassword);
 		 
 		
 	}
 
+    @Test
+	public void testGetHostname() throws Exception {
+		email.setHostName("192.127.0.1");
+		
+		String hostname=email.getHostName();
+		
+		assertEquals("192.127.0.1", hostname);
+	}
+	
 
 }
