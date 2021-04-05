@@ -137,6 +137,33 @@ public class EmailTest {
 		
 		assertEquals("192.127.0.1", hostname);
 	}
+    @Test
+	public void testGetSetHostnameWithNull() throws Exception {
+		email.setHostName(null);
+		
+		String hostname=email.getHostName();
+		
+		assertEquals(null, email.getHostName());
+	}
 	
+	@Test
+	public void testGetSetHostnameWithSession() throws Exception {
+		final String username = "username@gmail.com";
+		final String password = "password";
+		
+		
+		Properties props = new Properties();
+				
+		props.put(EmailConstants.MAIL_SMTP_AUTH, "TRUE");
+		props.put(EmailConstants.MAIL_HOST, "smtp.gmail.com");
+		props.put(EmailConstants.MAIL_PORT, "587");
+		props.put(EmailConstants.MAIL_SMTP_USER, "username@gmail.com");
+		props.put(EmailConstants.MAIL_SMTP_PASSWORD, "password");
+		
+		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(username, password);
+			}
+		});
 
 }
