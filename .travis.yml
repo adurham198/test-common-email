@@ -1,8 +1,11 @@
 language: java
 jdk: oraclejdk11
-
+before_install:
+  - mvn clean install
 install: true
-script: ./mvnw clean install
+script: 
+ -mvn test -B
+  
 
 cache:
   directories:
