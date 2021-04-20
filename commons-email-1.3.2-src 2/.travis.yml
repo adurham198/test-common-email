@@ -2,8 +2,3 @@ language: java
 arch: amd64
 jdk: 
 - oraclejdk11
-
-script:
-  - java --version
-  - ./mvnw clean install
-  - ./mvnw test
