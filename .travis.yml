@@ -11,5 +11,6 @@ cache:
 
 script:
   - java --version
+  - mvn install -DskipTests=true -Dmaven.javadoc.skip=false -B -V
   - ./mvnw clean install
   - ./mvnw test
