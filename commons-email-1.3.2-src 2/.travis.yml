@@ -1,7 +1,9 @@
 language: java
-
+arch: amd64
 jdk: 
 - oraclejdk11
 
-script: -mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-script: -mvn test -B
+script:
+  - java --version
+  - ./mvnw clean install
+  - ./mvnw test
